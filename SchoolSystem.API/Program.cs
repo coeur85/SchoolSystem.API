@@ -7,6 +7,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+builder.Services.AddSingleton<IStudentsRepository,StudentsRepository>();
+
 builder.Services.AddDbContext<SchoolDbContext>(options=> {
     options.UseSqlite("SchoolDB.db");
 });
