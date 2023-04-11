@@ -11,7 +11,7 @@ namespace SchoolSystem.API.Mapper
             CreateMap<CreateStudentDto, CreateStudentCommand>();
             CreateMap<UpdateStudentDto, UpdateStudentCommand>();
             CreateMap<DeleteStudentDto, DeleteStudentCommand>();
-            CreateMap<GetStudentDto, GetOneStudentQuery>();
+            CreateMap<GetOneStudentDto, GetOneStudentQuery>();
         }
     }
 }

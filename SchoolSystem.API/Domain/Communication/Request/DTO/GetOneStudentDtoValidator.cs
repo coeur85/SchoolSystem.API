@@ -2,9 +2,9 @@
 
 namespace SchoolSystem.API.Domain.Communication.Request.DTO
 {
-    public class GetStudentDtoValidator : AbstractValidator<GetStudentDto>
+    public class GetOneStudentDtoValidator : AbstractValidator<GetOneStudentDto>
     {
-        public GetStudentDtoValidator()
+        public GetOneStudentDtoValidator()
         {
             RuleFor(x => x.Id).GreaterThan(0);
         }
