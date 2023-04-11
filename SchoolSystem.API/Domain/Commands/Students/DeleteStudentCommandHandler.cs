@@ -4,15 +4,15 @@ using SchoolSystem.API.Domain.Repositories;
 
 namespace SchoolSystem.API.Domain.Commands.Students
 {
-    public class RemoveStudentCommandHandler : IRequestHandler<RemoveStudentCommand, Student>
+    public class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentCommand, Student>
     {
         private readonly IStudentsRepository studentsRepository;
 
-        public RemoveStudentCommandHandler(IStudentsRepository studentsRepository)
+        public DeleteStudentCommandHandler(IStudentsRepository studentsRepository)
         {
             this.studentsRepository = studentsRepository;
         }
-        public async Task<Student> Handle(RemoveStudentCommand request, CancellationToken cancellationToken)
+        public async Task<Student> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
         {
             Student deletedStudent = await this.studentsRepository.SelectOneAsync(request.Id);
             if (deletedStudent == null) { throw new Exception("Student Not found"); }
