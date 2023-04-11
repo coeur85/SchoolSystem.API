@@ -11,7 +11,9 @@ namespace SchoolSystem.API.Domain.Repositories
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Student>().Property(x=> x.Id).ValueGeneratedOnAdd();
             base.OnModelCreating(modelBuilder);
+           
         }
 
         public DbSet<Student> Students { get; set; }
