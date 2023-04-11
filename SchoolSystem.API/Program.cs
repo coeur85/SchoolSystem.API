@@ -1,6 +1,10 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using MediatR;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using SchoolSystem.API.Domain.Communication.Request.DTO;
 using SchoolSystem.API.Domain.Repositories;
 using SchoolSystem.API.Mapper;
 using System.Reflection;
@@ -29,6 +33,9 @@ var AutoMapConfig = new AutoMapper.MapperConfiguration(config =>
 });
 var mapper = AutoMapConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
+builder.Services.AddFluentValidationAutoValidation();
+builder.Services.AddValidatorsFromAssemblyContaining<CreateStudentDtoValidator>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
