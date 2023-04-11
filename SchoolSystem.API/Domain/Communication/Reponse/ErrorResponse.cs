@@ -1,6 +1,6 @@
 ﻿namespace SchoolSystem.API.Domain.Communication.Reponse
 {
-    public class ErrorResponse<T>: AppResponse<T> where T : class
+    public class ErrorResponse<T>: SchoolResponse<T> where T : class
     {
         public ErrorResponse()
         {
