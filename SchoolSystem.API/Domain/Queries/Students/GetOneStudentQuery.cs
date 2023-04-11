@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SchoolSystem.API.Domain.Models;
+using SchoolSystem.API.Domain.Models.Students;
 
 namespace SchoolSystem.API.Domain.Queries.Students
 {

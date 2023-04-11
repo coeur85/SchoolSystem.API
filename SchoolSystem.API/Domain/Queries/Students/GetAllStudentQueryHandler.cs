@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using SchoolSystem.API.Domain.Models;
+using SchoolSystem.API.Domain.Models.Students;
 using SchoolSystem.API.Domain.Repositories;
 using System.Collections.Generic;
 

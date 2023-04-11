@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 using SchoolSystem.API.Domain.Commands.Students;
 using SchoolSystem.API.Domain.Communication.Request.DTO;
-using SchoolSystem.API.Domain.Models;
+using SchoolSystem.API.Domain.Models.Students;
 using SchoolSystem.API.Domain.Queries.Students;
 using System.Runtime.CompilerServices;
 

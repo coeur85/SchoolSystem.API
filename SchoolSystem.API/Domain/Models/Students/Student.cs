@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 
-namespace SchoolSystem.API.Domain.Models
+namespace SchoolSystem.API.Domain.Models.Students
 {
     public class Student
     {
