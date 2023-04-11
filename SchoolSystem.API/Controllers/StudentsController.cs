@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 using SchoolSystem.API.Domain.Commands.Students;
+using SchoolSystem.API.Domain.Communication.Reponse;
 using SchoolSystem.API.Domain.Communication.Request.DTO;
 using SchoolSystem.API.Domain.Models.Students;
 using SchoolSystem.API.Domain.Queries.Students;
@@ -36,10 +37,9 @@ namespace SchoolSystem.API.Controllers
         }
 
         [HttpGet("Get/{id}")]
-        public async Task<Student> GetOneAsync(GetStudentDto studentDto)
-        {
-            GetOneStudentQuery studentQuery = this.mapper.Map<GetOneStudentQuery>(studentDto);
-            return await this.mediator.Send(studentQuery);
+        public async Task<SchoolResponse<Student>> GetOneAsync(int id)
+        { 
+            return await this.mediator.Send(new GetOneStudentQuery(id));
         }
 
         [HttpDelete("Delete")]
