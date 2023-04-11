@@ -1,6 +1,8 @@
-﻿namespace SchoolSystem.API.Domain.Repositories
+﻿using SchoolSystem.API.Domain.Models;
+
+namespace SchoolSystem.API.Domain.Repositories
 {
-    public interface IStudentsRepository
+    public interface IStudentsRepository : IRepositoryManger<Student>
     {
     }
 }

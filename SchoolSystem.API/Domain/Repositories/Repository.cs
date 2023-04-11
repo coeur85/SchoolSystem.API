@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace SchoolSystem.API.Domain.Repositories
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepositoryManger<T> where T : class
     {
         protected readonly SchoolDbContext context;
         public Repository(SchoolDbContext context)
