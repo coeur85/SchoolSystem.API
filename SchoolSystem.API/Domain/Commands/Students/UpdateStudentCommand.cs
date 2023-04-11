@@ -5,8 +5,8 @@ namespace SchoolSystem.API.Domain.Commands.Students
 {
     public class UpdateStudentCommand : IRequest<Student>
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
+        public int Id { get; init; }
+        public string Name { get; init; }
 
         public UpdateStudentCommand(int id, string Name)
         {

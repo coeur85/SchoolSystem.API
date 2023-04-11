@@ -5,7 +5,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
 {
     public class CreateStudentCommand : IRequest<Student>
     {
-        public string Name { get; set; }
+        public string Name { get; init; }
 
         public CreateStudentCommand(string Name)
         {
