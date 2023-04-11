@@ -16,16 +16,16 @@ namespace SchoolSystem.API.Domain.Repositories
             await this.context.SaveChangesAsync();
         }
              
-        public virtual void Update(T entity)
+        public virtual async ValueTask UpdateAsync(T entity)
         {
             this.context.Set<T>().Update(entity);
-            this.context.SaveChanges();
+           await this.context.SaveChangesAsync();
         }
            
-        public virtual void Delete(T entity)
+        public virtual async ValueTask DeleteAsync(T entity)
         {
             this.context.Set<T>().Remove(entity);
-            this.context.SaveChanges();
+           await this.context.SaveChangesAsync();
         }
             
         public virtual async ValueTask<T?> SelectOneAsync(int id)

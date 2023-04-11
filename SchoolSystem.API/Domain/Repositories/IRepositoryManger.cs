@@ -5,6 +5,7 @@
         ValueTask InsertAsync(T entity);
         ValueTask<List<T>> SelectAllAsync();
         ValueTask<T?> SelectOneAsync(int id);
-        void Update(T entity);
+        ValueTask UpdateAsync(T entity);
+        ValueTask DeleteAsync(int id);
     }
 }
