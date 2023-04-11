@@ -4,11 +4,11 @@ using SchoolSystem.API.Domain.Repositories;
 
 namespace SchoolSystem.API.Domain.Queries.Students
 {
-    public class IRepositoryMangerHandler : IRequestHandler<GetOneStudentCommand, Student>
+    public class GetOneStudentCommandHandler : IRequestHandler<GetOneStudentCommand, Student>
     {
         private readonly StudentsRepository studentsRepository;
 
-        public IRepositoryMangerHandler(StudentsRepository studentsRepository)
+        public GetOneStudentCommandHandler(StudentsRepository studentsRepository)
         {
             this.studentsRepository = studentsRepository;
         }
