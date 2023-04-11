@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SchoolSystem.API.Domain.Communication.Request.DTO;
 using SchoolSystem.API.Domain.Repositories;
 using SchoolSystem.API.Mapper;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,7 +43,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(x=> { x.DocExpansion(DocExpansion.None); });
 }
 
 app.UseHttpsRedirection();
