@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
@@ -16,10 +17,12 @@ namespace SchoolSystem.API.Controllers
     public class StudentsController : ControllerBase
     {
         private readonly IMediator mediator;
+        private readonly IMapper mapper;
 
-        public StudentsController(IMediator mediator)
+        public StudentsController(IMediator mediator, IMapper mapper)
         {
             this.mediator = mediator;
+            this.mapper = mapper;
         }
 
         [HttpGet("GetAll")]
@@ -27,15 +30,32 @@ namespace SchoolSystem.API.Controllers
             => await this.mediator.Send(new GetAllStudentQuery());
         [HttpPost("Create")]
         public async Task CreateStudentAsync(CreateStudentDto studentDto)
-            => await this.mediator.Send(new CreateStudentCommand(studentDto.Name));
+        {
+            CreateStudentCommand studentCommand = this.mapper.Map<CreateStudentCommand>(studentDto);
+            await this.mediator.Send(studentCommand);
+        }
+
         [HttpGet("Get/{id}")]
         public async Task<Student> GetOneAsync(GetStudentDto studentDto)
-            => await this.mediator.Send(new GetOneStudentQuery(studentDto.Id));
+        {
+            GetOneStudentQuery studentQuery = this.mapper.Map<GetOneStudentQuery>(studentDto);
+            return await this.mediator.Send(studentQuery);
+        }
+
         [HttpDelete("Delete")]
         public async Task DeleteAsync(DeleteStudentDto studentDto)
-            => await this.mediator.Send(new DeleteStudentCommand(studentDto.Id));
+        {
+            DeleteStudentCommand studentCommand = this.mapper.Map<DeleteStudentCommand>(studentDto);
+            await this.mediator.Send(studentCommand);
+
+        }
+
         [HttpPut("Update")]
         public async Task UpdateAsync(UpdateStudentDto studentDto)
-            => await this.mediator.Send(new UpdateStudentCommand(studentDto.Id, studentDto.Name));
+        {
+            UpdateStudentCommand studentCommand = this.mapper.Map<UpdateStudentCommand>(studentDto);
+            await this.mediator.Send(studentCommand);
+        }
+
     }
 }
