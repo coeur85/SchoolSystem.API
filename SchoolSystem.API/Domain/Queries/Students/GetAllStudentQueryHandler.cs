@@ -7,9 +7,9 @@ namespace SchoolSystem.API.Domain.Queries.Students
 {
     public class GetAllStudentQueryHandler : IRequestHandler<GetAllStudentQuery, List<Student>>
     {
-        private readonly StudentsRepository studentsRepository;
+        private readonly IStudentsRepository studentsRepository;
 
-        public GetAllStudentQueryHandler(StudentsRepository studentsRepository)
+        public GetAllStudentQueryHandler(IStudentsRepository studentsRepository)
         {
             this.studentsRepository = studentsRepository;
         }
