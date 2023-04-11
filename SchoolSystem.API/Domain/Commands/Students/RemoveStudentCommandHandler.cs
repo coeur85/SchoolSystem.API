@@ -17,7 +17,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
             Student deletedStudent = await this.studentsRepository.SelectOneAsync(request.Id);
             if (deletedStudent == null) { throw new Exception("Student Not found"); }
 
-            await this.studentsRepository.DeleteAsync(deletedStudent.Id);
+            await this.studentsRepository.DeleteAsync(deletedStudent);
 
             return deletedStudent;
         }

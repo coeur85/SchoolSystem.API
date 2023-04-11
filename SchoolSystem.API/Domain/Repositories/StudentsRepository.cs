@@ -2,7 +2,7 @@
 
 namespace SchoolSystem.API.Domain.Repositories
 {
-    public class StudentsRepository : Repository<Student>, IStudentsRepository
+    public class StudentsRepository : RepositoryManger<Student>, IStudentsRepository
     {
         public StudentsRepository(SchoolDbContext context) : base(context)
         {

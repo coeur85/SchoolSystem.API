@@ -1,12 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
+using System.Runtime.CompilerServices;
 
 namespace SchoolSystem.API.Domain.Repositories
 {
-    public class Repository<T> : IRepositoryManger<T> where T : class
+    public class RepositoryManger<T> : IRepositoryManger<T> where T : class
     {
         protected readonly SchoolDbContext context;
-        public Repository(SchoolDbContext context)
+        public RepositoryManger(SchoolDbContext context)
         => this.context = context;
 
 
@@ -32,5 +33,6 @@ namespace SchoolSystem.API.Domain.Repositories
             => await this.context.Set<T>().FindAsync(id);
         public virtual async ValueTask<List<T>> SelectAllAsync()
             => await this.context.Set<T>().ToListAsync();
+
     }
 }

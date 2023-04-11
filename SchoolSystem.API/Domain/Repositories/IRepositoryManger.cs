@@ -6,6 +6,6 @@
         ValueTask<List<T>> SelectAllAsync();
         ValueTask<T?> SelectOneAsync(int id);
         ValueTask UpdateAsync(T entity);
-        ValueTask DeleteAsync(int id);
+        ValueTask DeleteAsync(T entity);
     }
 }
