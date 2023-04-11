@@ -32,7 +32,7 @@ namespace SchoolSystem.API.Domain.Repositories
         public virtual async ValueTask<T?> SelectOneAsync(int id)
             => await this.context.Set<T>().FindAsync(id);
         public virtual async ValueTask<List<T>> SelectAllAsync()
-            => await this.context.Set<T>().ToListAsync();
+            => await this.context.Set<T>().AsNoTracking().ToListAsync();
 
     }
 }

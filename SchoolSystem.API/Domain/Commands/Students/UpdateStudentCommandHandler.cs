@@ -20,8 +20,8 @@ namespace SchoolSystem.API.Domain.Commands.Students
             if (dbStudent == null) { throw new Exception("Student Not Found"); }
             if(dbStudent.Name == studentToBeUpdated.Name) { throw new Exception($" student name has not been changed"); }
 
-
-            await  studentsRepository.UpdateAsync(studentToBeUpdated);
+            dbStudent.Name = studentToBeUpdated.Name;
+            await  studentsRepository.UpdateAsync(dbStudent);
             return studentToBeUpdated;
         }
     }
