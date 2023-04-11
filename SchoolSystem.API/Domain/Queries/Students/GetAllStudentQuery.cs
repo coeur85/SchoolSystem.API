@@ -3,7 +3,7 @@ using SchoolSystem.API.Domain.Models;
 
 namespace SchoolSystem.API.Domain.Queries.Students
 {
-    public class GetAllStudentCommand : IRequest<List<Student>>
+    public class GetAllStudentQuery : IRequest<List<Student>>
     {
     }
 }

@@ -5,15 +5,15 @@ using System.Collections.Generic;
 
 namespace SchoolSystem.API.Domain.Queries.Students
 {
-    public class GetAllStudentCommandHandler : IRequestHandler<GetAllStudentCommand, List<Student>>
+    public class GetAllStudentQueryHandler : IRequestHandler<GetAllStudentQuery, List<Student>>
     {
         private readonly StudentsRepository studentsRepository;
 
-        public GetAllStudentCommandHandler(StudentsRepository studentsRepository)
+        public GetAllStudentQueryHandler(StudentsRepository studentsRepository)
         {
             this.studentsRepository = studentsRepository;
         }
-        public async Task<List<Student>> Handle(GetAllStudentCommand request, CancellationToken cancellationToken)
+        public async Task<List<Student>> Handle(GetAllStudentQuery request, CancellationToken cancellationToken)
         {
             var students = await this.studentsRepository.SelectAllAsync();
             return students;
