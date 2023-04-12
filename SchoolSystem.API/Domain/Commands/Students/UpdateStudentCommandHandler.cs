@@ -1,28 +1,45 @@
-﻿using MediatR;
+﻿using AutoMapper;
+using FluentValidation;
+using MediatR;
+using SchoolSystem.API.Domain.Communication.Response;
 using SchoolSystem.API.Domain.Models.Students;
 using SchoolSystem.API.Domain.Repositories;
 using System.Data.SqlTypes;
 
 namespace SchoolSystem.API.Domain.Commands.Students
 {
-    public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand, Student>
+    public class UpdateStudentCommandHandler : IRequestHandler<UpdateStudentCommand, SchoolResponse>
     {
         private readonly IStudentsRepository studentsRepository;
+        private readonly IMapper mapper;
+        private readonly IValidator<UpdateStudentCommand> validator;
 
-        public UpdateStudentCommandHandler(IStudentsRepository studentsRepository)
+        public UpdateStudentCommandHandler(IStudentsRepository studentsRepository, IMapper mapper
+            , IValidator<UpdateStudentCommand>  validator)
         {
             this.studentsRepository = studentsRepository;
+            this.mapper = mapper;
+            this.validator = validator;
         }
-        public async Task<Student> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
+        public async Task<SchoolResponse> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
         {
-            Student studentToBeUpdated = new Student() { Id = request.Id , Name = request.Name };
+            var result = await this.validator.ValidateAsync(request);
+            if(!result.IsValid)
+            {
+                ErrorResponse errorResponse =   new ErrorResponse();
+                foreach (var ex in result.Errors)
+                    errorResponse.AddError(ex.PropertyName, ex.ErrorMessage);
+                return errorResponse;
+            }
+
+            Student studentToBeUpdated = this.mapper.Map<Student>(request);
             Student dbStudent = await this.studentsRepository.SelectOneAsync(request.Id);
-            if (dbStudent == null) { throw new Exception("Student Not Found"); }
-            if(dbStudent.Name == studentToBeUpdated.Name) { throw new Exception($" student name has not been changed"); }
 
             dbStudent.Name = studentToBeUpdated.Name;
             await  studentsRepository.UpdateAsync(dbStudent);
-            return studentToBeUpdated;
+            SuccessResponse successResponse = new SuccessResponse();
+            successResponse.Data = studentToBeUpdated;
+            return successResponse;
         }
     }
 }

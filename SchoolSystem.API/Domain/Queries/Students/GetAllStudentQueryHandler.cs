@@ -1,11 +1,12 @@
 ﻿using MediatR;
+using SchoolSystem.API.Domain.Communication.Response;
 using SchoolSystem.API.Domain.Models.Students;
 using SchoolSystem.API.Domain.Repositories;
 using System.Collections.Generic;
 
 namespace SchoolSystem.API.Domain.Queries.Students
 {
-    public class GetAllStudentQueryHandler : IRequestHandler<GetAllStudentQuery, List<Student>>
+    public class GetAllStudentQueryHandler : IRequestHandler<GetAllStudentQuery, SchoolResponse>
     {
         private readonly IStudentsRepository studentsRepository;
 
@@ -13,10 +14,12 @@ namespace SchoolSystem.API.Domain.Queries.Students
         {
             this.studentsRepository = studentsRepository;
         }
-        public async Task<List<Student>> Handle(GetAllStudentQuery request, CancellationToken cancellationToken)
+        public async Task<SchoolResponse> Handle(GetAllStudentQuery request, CancellationToken cancellationToken)
         {
             var students = await this.studentsRepository.SelectAllAsync();
-            return students;
+            SuccessResponse response = new SuccessResponse();
+            response.Data = students;
+            return response;
         }
     }
 }

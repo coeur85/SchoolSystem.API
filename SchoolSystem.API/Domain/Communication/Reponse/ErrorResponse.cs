@@ -8,14 +8,25 @@ namespace SchoolSystem.API.Domain.Communication.Response
 
         {
             base.Success = false;
-            base.Errors = new Dictionary<string, string>();
+            base.Errors = new();
 
         }
 
         public void AddError(string propertyName,string message)
-            =>  base.Errors.Add(propertyName, message);
+        {
+            if (base.Errors.ContainsKey(propertyName)) { 
+                var errors = base.Errors[propertyName];
+                errors.Add(message);
+                base.Errors[propertyName] = errors;
+            }
+            else
+            {
+                base.Errors.Add(propertyName, new List<string> { message });
+            }
+        }
+            //=>  base.Errors.Add(propertyName, message);
         public void AddError(SchoolExceptions exceptions)
-            => base.Errors.Add(exceptions.PropertyName, exceptions.ErrorMessage);
+            => AddError(exceptions.PropertyName, exceptions.ErrorMessage);
         
     }
 }

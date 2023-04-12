@@ -16,6 +16,7 @@ namespace SchoolSystem.API.Mapper
 
 
             CreateMap<CreateStudentCommand, Student>();
+            CreateMap<UpdateStudentCommand, Student>();
         }
     }
 }

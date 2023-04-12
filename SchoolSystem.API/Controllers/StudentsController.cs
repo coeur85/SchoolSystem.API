@@ -27,13 +27,13 @@ namespace SchoolSystem.API.Controllers
         }
 
         [HttpGet("GetAll")]
-        public async Task<List<Student>> GetAllAsync()
+        public async Task<SchoolResponse> GetAllAsync()
             => await this.mediator.Send(new GetAllStudentQuery());
         [HttpPost("Create")]
-        public async Task CreateStudentAsync(CreateStudentDto studentDto)
+        public async Task<SchoolResponse> CreateStudentAsync(CreateStudentDto studentDto)
         {
             CreateStudentCommand studentCommand = this.mapper.Map<CreateStudentCommand>(studentDto);
-            await this.mediator.Send(studentCommand);
+            return await this.mediator.Send(studentCommand);
         }
 
         [HttpGet("Get/{id}")]
@@ -51,10 +51,10 @@ namespace SchoolSystem.API.Controllers
         }
 
         [HttpPut("Update")]
-        public async Task UpdateAsync(UpdateStudentDto studentDto)
+        public async Task<SchoolResponse> UpdateAsync(UpdateStudentDto studentDto)
         {
             UpdateStudentCommand studentCommand = this.mapper.Map<UpdateStudentCommand>(studentDto);
-            await this.mediator.Send(studentCommand);
+           return await this.mediator.Send(studentCommand);
         }
 
     }
