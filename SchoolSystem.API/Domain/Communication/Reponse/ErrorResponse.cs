@@ -2,7 +2,7 @@
 
 namespace SchoolSystem.API.Domain.Communication.Response
 {
-    public class ErrorResponse<T>: SchoolResponse<T>
+    public class ErrorResponse: SchoolResponse
     {
         public ErrorResponse()
 

@@ -4,7 +4,7 @@ using SchoolSystem.API.Domain.Models.Students;
 
 namespace SchoolSystem.API.Domain.Commands.Students
 {
-    public class CreateStudentCommand : IRequest<SchoolResponse<Student>>
+    public class CreateStudentCommand : IRequest<SchoolResponse>
     {
         public string Name { get; init; }
 

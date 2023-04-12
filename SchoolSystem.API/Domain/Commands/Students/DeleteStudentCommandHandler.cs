@@ -8,7 +8,7 @@ using SchoolSystem.API.Domain.Repositories;
 
 namespace SchoolSystem.API.Domain.Commands.Students
 {
-    public class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentCommand,SchoolResponse<Student>>
+    public class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentCommand,SchoolResponse>
     {
         private readonly IStudentsRepository studentsRepository;
         private readonly IValidator<DeleteStudentCommand> validator;
@@ -19,12 +19,12 @@ namespace SchoolSystem.API.Domain.Commands.Students
             this.studentsRepository = studentsRepository;
             this.validator = validator;
         }
-        public async Task<SchoolResponse<Student>> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
+        public async Task<SchoolResponse> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
         {
             ValidationResult resukt = await this.validator.ValidateAsync(request);
             if(!resukt.IsValid)
             {
-                ErrorResponse <Student>errorResponse = new ErrorResponse<Student>();
+                ErrorResponse errorResponse = new ErrorResponse();
                 foreach (var ex in resukt.Errors)
                     errorResponse.AddError(ex.PropertyName, ex.ErrorMessage);
                 return errorResponse;
@@ -32,7 +32,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
             }
             Student deletedStudent = await this.studentsRepository.SelectOneAsync(request.Id);
             await this.studentsRepository.DeleteAsync(deletedStudent);
-            SuccessResponse<Student> successResponse = new SuccessResponse<Student>();
+            SchoolResponse successResponse = new SuccessResponse();
             successResponse.Data = deletedStudent;
             return successResponse;
         }

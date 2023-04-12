@@ -4,7 +4,7 @@ using SchoolSystem.API.Domain.Models.Students;
 
 namespace SchoolSystem.API.Domain.Commands.Students
 {
-    public class DeleteStudentCommand : IRequest<SchoolResponse<Student>>
+    public class DeleteStudentCommand : IRequest<SchoolResponse>
     {
         public int Id { get; init; }
 

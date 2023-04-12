@@ -7,7 +7,7 @@ using SchoolSystem.API.Domain.Repositories;
 
 namespace SchoolSystem.API.Domain.Commands.Students
 {
-    public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, SchoolResponse<Student>>
+    public class CreateStudentCommandHandler : IRequestHandler<CreateStudentCommand, SchoolResponse>
     {
         private readonly IStudentsRepository studentsRepository;
         private readonly IValidator<CreateStudentCommand> validator;
@@ -22,12 +22,12 @@ namespace SchoolSystem.API.Domain.Commands.Students
         }
        
 
-        public async Task<SchoolResponse<Student>> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
+        public async Task<SchoolResponse> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
             var result = this.validator.Validate(request);
             if(!result.IsValid)
             {
-                ErrorResponse<Student> errorResponse = new ErrorResponse<Student>();
+                ErrorResponse errorResponse = new ErrorResponse();
                 foreach (var ex in result.Errors)
                     errorResponse.AddError(ex.PropertyName, ex.ErrorMessage);
 
@@ -36,7 +36,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
             Student newStudent = this.mapper.Map<Student>(request);
             await this.studentsRepository.InsertAsync(newStudent);
 
-           SuccessResponse<Student> successResponse = new SuccessResponse<Student>();  
+           SuccessResponse successResponse = new SuccessResponse();  
             return successResponse;
         }
     }

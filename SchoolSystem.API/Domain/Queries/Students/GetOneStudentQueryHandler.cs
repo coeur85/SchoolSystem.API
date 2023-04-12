@@ -7,7 +7,7 @@ using SchoolSystem.API.Domain.Repositories;
 
 namespace SchoolSystem.API.Domain.Queries.Students
 {
-    public class GetOneStudentQueryHandler : IRequestHandler<GetOneStudentQuery, SchoolResponse<Student>>
+    public class GetOneStudentQueryHandler : IRequestHandler<GetOneStudentQuery, SchoolResponse>
     {
         private readonly IStudentsRepository studentsRepository;
         private readonly IValidator<GetOneStudentQuery> validator;
@@ -18,12 +18,12 @@ namespace SchoolSystem.API.Domain.Queries.Students
             this.studentsRepository = studentsRepository;
             this.validator = validator;
         }
-        public async Task<SchoolResponse<Student>> Handle(GetOneStudentQuery request, CancellationToken cancellationToken)
+        public async Task<SchoolResponse> Handle(GetOneStudentQuery request, CancellationToken cancellationToken)
         {
             var result = this.validator.Validate(request);
 
            if (! result.IsValid) { 
-                ErrorResponse<Student> errorResponse =new ErrorResponse<Student>();
+                ErrorResponse errorResponse =new ErrorResponse();
                 foreach (var ex in result.Errors)
                 {
                     errorResponse.AddError(ex.PropertyName, ex.ErrorMessage);
@@ -31,7 +31,7 @@ namespace SchoolSystem.API.Domain.Queries.Students
                 return errorResponse;
             }
             Student student = await this.studentsRepository.SelectOneAsync(request.Id);
-            SuccessResponse<Student> successResponse = new SuccessResponse<Student>();
+            SchoolResponse successResponse = new SuccessResponse();
             successResponse.Data = student;
             return successResponse;
         }

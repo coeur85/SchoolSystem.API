@@ -37,13 +37,13 @@ namespace SchoolSystem.API.Controllers
         }
 
         [HttpGet("Get/{id}")]
-        public async Task<SchoolResponse<Student>> GetOneAsync(int id)
+        public async Task<SchoolResponse> GetOneAsync(int id)
         { 
             return await this.mediator.Send(new GetOneStudentQuery(id));
         }
 
         [HttpDelete("Delete")]
-        public async Task<SchoolResponse<Student>> DeleteAsync(DeleteStudentDto studentDto)
+        public async Task<SchoolResponse> DeleteAsync(DeleteStudentDto studentDto)
         {
             DeleteStudentCommand studentCommand = this.mapper.Map<DeleteStudentCommand>(studentDto);
             return await this.mediator.Send(studentCommand);

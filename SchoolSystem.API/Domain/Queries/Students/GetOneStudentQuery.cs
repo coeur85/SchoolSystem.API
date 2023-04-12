@@ -4,7 +4,7 @@ using SchoolSystem.API.Domain.Models.Students;
 
 namespace SchoolSystem.API.Domain.Queries.Students
 {
-    public class GetOneStudentQuery : IRequest<SchoolResponse<Student>>
+    public class GetOneStudentQuery : IRequest<SchoolResponse>
     {
         public int Id { get; init; }
         public GetOneStudentQuery(int Id)
