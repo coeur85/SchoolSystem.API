@@ -27,8 +27,7 @@ namespace SchoolSystem.API.Domain.Queries.Students
                 return errorResponse;
             }
             Student student = await this.studentsRepository.SelectOneAsync(request.Id);
-            SchoolResponse successResponse = new SuccessResponse();
-            successResponse.Data = student;
+            SchoolResponse successResponse = new SuccessResponse(student);
             return successResponse;
         }
     }

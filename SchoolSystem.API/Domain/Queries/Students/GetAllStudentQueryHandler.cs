@@ -17,8 +17,7 @@ namespace SchoolSystem.API.Domain.Queries.Students
         public async Task<SchoolResponse> Handle(GetAllStudentQuery request, CancellationToken cancellationToken)
         {
             var students = await this.studentsRepository.SelectAllAsync();
-            SuccessResponse response = new SuccessResponse();
-            response.Data = students;
+            SuccessResponse response = new SuccessResponse(students);
             return response;
         }
     }

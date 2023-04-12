@@ -30,8 +30,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
             }
             Student deletedStudent = await this.studentsRepository.SelectOneAsync(request.Id);
             await this.studentsRepository.DeleteAsync(deletedStudent);
-            SchoolResponse successResponse = new SuccessResponse();
-            successResponse.Data = deletedStudent;
+            SchoolResponse successResponse = new SuccessResponse(deletedStudent);
             return successResponse;
         }
     }

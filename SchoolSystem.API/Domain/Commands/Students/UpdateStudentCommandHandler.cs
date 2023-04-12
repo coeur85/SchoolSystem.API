@@ -35,8 +35,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
 
             dbStudent.Name = studentToBeUpdated.Name;
             await  studentsRepository.UpdateAsync(dbStudent);
-            SuccessResponse successResponse = new SuccessResponse();
-            successResponse.Data = studentToBeUpdated;
+            SuccessResponse successResponse = new SuccessResponse(dbStudent);
             return successResponse;
         }
     }

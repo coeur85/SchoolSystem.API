@@ -4,7 +4,13 @@
     {
         public SuccessResponse()
         {
+            base.Errors = null;
             base.Success = true;
         }
+
+        public SuccessResponse(object data)
+            :this()
+            => base.Data = data;    
+
     }
 }
