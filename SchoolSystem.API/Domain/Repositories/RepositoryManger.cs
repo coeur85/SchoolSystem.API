@@ -1,6 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
-using Microsoft.EntityFrameworkCore;
-using System.Runtime.CompilerServices;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace SchoolSystem.API.Domain.Repositories
 {
@@ -16,19 +14,19 @@ namespace SchoolSystem.API.Domain.Repositories
             await this.context.Set<T>().AddAsync(entity);
             await this.context.SaveChangesAsync();
         }
-             
+
         public virtual async ValueTask UpdateAsync(T entity)
         {
             this.context.Set<T>().Update(entity);
-           await this.context.SaveChangesAsync();
+            await this.context.SaveChangesAsync();
         }
-           
+
         public virtual async ValueTask DeleteAsync(T entity)
         {
             this.context.Set<T>().Remove(entity);
-           await this.context.SaveChangesAsync();
+            await this.context.SaveChangesAsync();
         }
-            
+
         public virtual async ValueTask<T?> SelectOneAsync(int id)
             => await this.context.Set<T>().FindAsync(id);
         public virtual async ValueTask<List<T>> SelectAllAsync()

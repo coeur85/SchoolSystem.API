@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 using SchoolSystem.API.Domain.Commands.Students;
-using SchoolSystem.API.Domain.Communication.Response;
 using SchoolSystem.API.Domain.Communication.Request.DTO;
-using SchoolSystem.API.Domain.Models.Students;
+using SchoolSystem.API.Domain.Communication.Response;
 using SchoolSystem.API.Domain.Queries.Students;
-using System.Runtime.CompilerServices;
 
 namespace SchoolSystem.API.Controllers
 {
@@ -38,7 +34,7 @@ namespace SchoolSystem.API.Controllers
 
         [HttpGet("Get/{id}")]
         public async Task<SchoolResponse> GetOneAsync(int id)
-        { 
+        {
             return await this.mediator.Send(new GetOneStudentQuery(id));
         }
 
@@ -54,7 +50,7 @@ namespace SchoolSystem.API.Controllers
         public async Task<SchoolResponse> UpdateAsync(UpdateStudentDto studentDto)
         {
             UpdateStudentCommand studentCommand = this.mapper.Map<UpdateStudentCommand>(studentDto);
-           return await this.mediator.Send(studentCommand);
+            return await this.mediator.Send(studentCommand);
         }
 
     }

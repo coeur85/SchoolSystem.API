@@ -1,10 +1,5 @@
 using FluentValidation;
-using FluentValidation.AspNetCore;
-using MediatR;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using SchoolSystem.API.Domain.Communication.Request.DTO;
 using SchoolSystem.API.Domain.Queries.Students;
 using SchoolSystem.API.Domain.Repositories;
 using SchoolSystem.API.Mapper;
@@ -18,7 +13,8 @@ builder.Services.AddSwaggerGen();
 
 
 
-builder.Services.AddDbContext<SchoolDbContext>(options=> {
+builder.Services.AddDbContext<SchoolDbContext>(options =>
+{
     options.UseInMemoryDatabase("SchoolDB.db");
 });
 
@@ -47,7 +43,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI(x=> { x.DocExpansion(DocExpansion.None); });
+    app.UseSwaggerUI(x => { x.DocExpansion(DocExpansion.None); });
 }
 
 app.UseHttpsRedirection();

@@ -5,9 +5,9 @@ namespace SchoolSystem.API.Domain.Models.Students.Exceptions
     public class StudentNotFoundException : SchoolExceptions
     {
         public StudentNotFoundException()
-            :base("StudentModel", "student was not found!")
+            : base("StudentModel", "student was not found!")
         {
-            
+
         }
     }
 }

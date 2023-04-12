@@ -8,7 +8,7 @@ using SchoolSystem.API.Domain.Repositories;
 
 namespace SchoolSystem.API.Domain.Commands.Students
 {
-    public class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentCommand,SchoolResponse>
+    public class DeleteStudentCommandHandler : IRequestHandler<DeleteStudentCommand, SchoolResponse>
     {
         private readonly IStudentsRepository studentsRepository;
         private readonly IValidator<DeleteStudentCommand> validator;
@@ -22,7 +22,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
         public async Task<SchoolResponse> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
         {
             ValidationResult resukt = await this.validator.ValidateAsync(request);
-            if(!resukt.IsValid)
+            if (!resukt.IsValid)
             {
                 ErrorResponse errorResponse = new ErrorResponse(resukt.Errors);
                 return errorResponse;

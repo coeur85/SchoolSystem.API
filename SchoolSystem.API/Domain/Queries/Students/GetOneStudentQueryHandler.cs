@@ -2,7 +2,6 @@
 using MediatR;
 using SchoolSystem.API.Domain.Communication.Response;
 using SchoolSystem.API.Domain.Models.Students;
-using SchoolSystem.API.Domain.Models.Students.Exceptions;
 using SchoolSystem.API.Domain.Repositories;
 
 namespace SchoolSystem.API.Domain.Queries.Students
@@ -22,8 +21,9 @@ namespace SchoolSystem.API.Domain.Queries.Students
         {
             var result = this.validator.Validate(request);
 
-           if (! result.IsValid) { 
-                ErrorResponse errorResponse =new ErrorResponse(result.Errors);
+            if (!result.IsValid)
+            {
+                ErrorResponse errorResponse = new ErrorResponse(result.Errors);
                 return errorResponse;
             }
             Student student = await this.studentsRepository.SelectOneAsync(request.Id);

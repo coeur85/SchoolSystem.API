@@ -4,7 +4,6 @@ using MediatR;
 using SchoolSystem.API.Domain.Communication.Response;
 using SchoolSystem.API.Domain.Models.Students;
 using SchoolSystem.API.Domain.Repositories;
-using System.Data.SqlTypes;
 
 namespace SchoolSystem.API.Domain.Commands.Students
 {
@@ -15,7 +14,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
         private readonly IValidator<UpdateStudentCommand> validator;
 
         public UpdateStudentCommandHandler(IStudentsRepository studentsRepository, IMapper mapper
-            , IValidator<UpdateStudentCommand>  validator)
+            , IValidator<UpdateStudentCommand> validator)
         {
             this.studentsRepository = studentsRepository;
             this.mapper = mapper;
@@ -24,9 +23,9 @@ namespace SchoolSystem.API.Domain.Commands.Students
         public async Task<SchoolResponse> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
         {
             var result = await this.validator.ValidateAsync(request);
-            if(!result.IsValid)
+            if (!result.IsValid)
             {
-                ErrorResponse errorResponse =   new ErrorResponse(result.Errors);
+                ErrorResponse errorResponse = new ErrorResponse(result.Errors);
                 return errorResponse;
             }
 
@@ -34,7 +33,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
             Student dbStudent = await this.studentsRepository.SelectOneAsync(request.Id);
 
             dbStudent.Name = studentToBeUpdated.Name;
-            await  studentsRepository.UpdateAsync(dbStudent);
+            await studentsRepository.UpdateAsync(dbStudent);
             SuccessResponse successResponse = new SuccessResponse(dbStudent);
             return successResponse;
         }

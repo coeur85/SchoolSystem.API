@@ -20,12 +20,12 @@ namespace SchoolSystem.API.Domain.Commands.Students
             this.validator = validator;
             this.mapper = mapper;
         }
-       
+
 
         public async Task<SchoolResponse> Handle(CreateStudentCommand request, CancellationToken cancellationToken)
         {
             var result = this.validator.Validate(request);
-            if(!result.IsValid)
+            if (!result.IsValid)
             {
                 ErrorResponse errorResponse = new ErrorResponse(result.Errors);
                 return errorResponse;
@@ -33,7 +33,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
             Student newStudent = this.mapper.Map<Student>(request);
             await this.studentsRepository.InsertAsync(newStudent);
 
-           SuccessResponse successResponse = new SuccessResponse();  
+            SuccessResponse successResponse = new SuccessResponse();
             return successResponse;
         }
     }

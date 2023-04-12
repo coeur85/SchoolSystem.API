@@ -1,6 +1,5 @@
 ﻿using MediatR;
 using SchoolSystem.API.Domain.Communication.Response;
-using SchoolSystem.API.Domain.Models.Students;
 
 namespace SchoolSystem.API.Domain.Commands.Students
 {
@@ -11,7 +10,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
 
         public UpdateStudentCommand(int id, string Name)
         {
-                this.Id = id;this.Name = Name;
+            this.Id = id; this.Name = Name;
         }
     }
 }

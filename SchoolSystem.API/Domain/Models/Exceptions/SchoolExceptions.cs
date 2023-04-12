@@ -8,7 +8,7 @@
 
         public SchoolExceptions(string propertyName, string msg)
         {
-            this.PropertyName = propertyName;this.ErrorMessage = msg;
+            this.PropertyName = propertyName; this.ErrorMessage = msg;
         }
     }
 }

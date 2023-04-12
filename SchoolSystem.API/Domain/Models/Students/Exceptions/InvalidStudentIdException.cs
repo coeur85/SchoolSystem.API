@@ -7,7 +7,7 @@ namespace SchoolSystem.API.Domain.Models.Students.Exceptions
         public InvalidStudentIdException(int id)
             : base("Student ID", $"this number {id} is not valid student id")
         {
-            
+
         }
     }
 }

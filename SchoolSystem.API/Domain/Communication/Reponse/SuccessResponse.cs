@@ -9,8 +9,8 @@
         }
 
         public SuccessResponse(object data)
-            :this()
-            => base.Data = data;    
+            : this()
+            => base.Data = data;
 
     }
 }
