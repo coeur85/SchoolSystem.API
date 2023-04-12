@@ -1,8 +1,10 @@
 ﻿using FluentValidation;
+using FluentValidation.Results;
 using MediatR;
 using SchoolSystem.API.Domain.Communication.Response;
 using SchoolSystem.API.Domain.Models.Students;
 using SchoolSystem.API.Domain.Repositories;
+
 
 namespace SchoolSystem.API.Domain.Commands.Students
 {
@@ -19,7 +21,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
         }
         public async Task<SchoolResponse<Student>> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
         {
-            var resukt = this.validator.Validate(request);
+            ValidationResult resukt = await this.validator.ValidateAsync(request);
             if(!resukt.IsValid)
             {
                 ErrorResponse <Student>errorResponse = new ErrorResponse<Student>();
