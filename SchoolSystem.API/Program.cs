@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SchoolSystem.API.Domain.Communication.Request.DTO;
+using SchoolSystem.API.Domain.Queries.Students;
 using SchoolSystem.API.Domain.Repositories;
 using SchoolSystem.API.Mapper;
 using Swashbuckle.AspNetCore.SwaggerUI;
@@ -35,7 +36,9 @@ var AutoMapConfig = new AutoMapper.MapperConfiguration(config =>
 var mapper = AutoMapConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
-//builder.Services.AddFluentValidationAutoValidation(); auto validate
+//builder.Services.AddFluentValidationAutoValidation(); auto validate 
+//builder.Services.AddScoped<IValidator<GetOneStudentQuery>, GetOneStudentQueryValidator>();
+builder.Services.AddValidatorsFromAssemblyContaining<GetOneStudentQueryValidator>();
 
 
 var app = builder.Build();

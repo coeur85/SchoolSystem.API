@@ -43,10 +43,10 @@ namespace SchoolSystem.API.Controllers
         }
 
         [HttpDelete("Delete")]
-        public async Task DeleteAsync(DeleteStudentDto studentDto)
+        public async Task<SchoolResponse<Student>> DeleteAsync(DeleteStudentDto studentDto)
         {
             DeleteStudentCommand studentCommand = this.mapper.Map<DeleteStudentCommand>(studentDto);
-            await this.mediator.Send(studentCommand);
+            return await this.mediator.Send(studentCommand);
 
         }
 
