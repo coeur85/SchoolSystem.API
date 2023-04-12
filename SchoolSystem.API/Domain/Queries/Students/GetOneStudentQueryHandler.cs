@@ -23,11 +23,7 @@ namespace SchoolSystem.API.Domain.Queries.Students
             var result = this.validator.Validate(request);
 
            if (! result.IsValid) { 
-                ErrorResponse errorResponse =new ErrorResponse();
-                foreach (var ex in result.Errors)
-                {
-                    errorResponse.AddError(ex.PropertyName, ex.ErrorMessage);
-                }
+                ErrorResponse errorResponse =new ErrorResponse(result.Errors);
                 return errorResponse;
             }
             Student student = await this.studentsRepository.SelectOneAsync(request.Id);

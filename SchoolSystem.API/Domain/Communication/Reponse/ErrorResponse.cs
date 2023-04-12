@@ -1,4 +1,5 @@
-﻿using SchoolSystem.API.Domain.Models.Exceptions;
+﻿using FluentValidation.Results;
+using SchoolSystem.API.Domain.Models.Exceptions;
 
 namespace SchoolSystem.API.Domain.Communication.Response
 {
@@ -9,8 +10,14 @@ namespace SchoolSystem.API.Domain.Communication.Response
         {
             base.Success = false;
             base.Errors = new();
+            base.Data = null;
 
         }
+
+        public ErrorResponse(List<ValidationFailure> errors)
+            :this()
+            => AddErrors(errors);
+        
 
         public void AddError(string propertyName,string message)
         {
@@ -24,9 +31,13 @@ namespace SchoolSystem.API.Domain.Communication.Response
                 base.Errors.Add(propertyName, new List<string> { message });
             }
         }
-            //=>  base.Errors.Add(propertyName, message);
         public void AddError(SchoolExceptions exceptions)
             => AddError(exceptions.PropertyName, exceptions.ErrorMessage);
+        public void AddErrors(List<ValidationFailure> errors)
+        {
+            foreach (var error in errors)
+                AddError(error.PropertyName, error.ErrorMessage);
+        }
         
     }
 }

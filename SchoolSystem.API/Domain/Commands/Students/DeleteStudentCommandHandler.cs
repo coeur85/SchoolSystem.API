@@ -24,9 +24,7 @@ namespace SchoolSystem.API.Domain.Commands.Students
             ValidationResult resukt = await this.validator.ValidateAsync(request);
             if(!resukt.IsValid)
             {
-                ErrorResponse errorResponse = new ErrorResponse();
-                foreach (var ex in resukt.Errors)
-                    errorResponse.AddError(ex.PropertyName, ex.ErrorMessage);
+                ErrorResponse errorResponse = new ErrorResponse(resukt.Errors);
                 return errorResponse;
 
             }
