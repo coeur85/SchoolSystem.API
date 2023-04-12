@@ -1,13 +1,15 @@
 ﻿using SchoolSystem.API.Domain.Models.Exceptions;
 
-namespace SchoolSystem.API.Domain.Communication.Reponse
+namespace SchoolSystem.API.Domain.Communication.Response
 {
-    public class ErrorResponse<T>: SchoolResponse<T> where T : class
+    public class ErrorResponse<T>: SchoolResponse<T>
     {
         public ErrorResponse()
+
         {
             base.Success = false;
             base.Errors = new Dictionary<string, string>();
+
         }
 
         public void AddError(string propertyName,string message)

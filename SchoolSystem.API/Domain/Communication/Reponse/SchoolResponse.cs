@@ -1,4 +1,4 @@
-﻿namespace SchoolSystem.API.Domain.Communication.Reponse
+﻿namespace SchoolSystem.API.Domain.Communication.Response
 {
     public class SchoolResponse<T>
     {

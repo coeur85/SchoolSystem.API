@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using FluentValidation;
 using MediatR;
-using SchoolSystem.API.Domain.Communication.Reponse;
+using SchoolSystem.API.Domain.Communication.Response;
 using SchoolSystem.API.Domain.Models.Students;
 using SchoolSystem.API.Domain.Repositories;
 

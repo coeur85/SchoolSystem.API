@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.TagHelpers.Cache;
 using SchoolSystem.API.Domain.Commands.Students;
-using SchoolSystem.API.Domain.Communication.Reponse;
+using SchoolSystem.API.Domain.Communication.Response;
 using SchoolSystem.API.Domain.Communication.Request.DTO;
 using SchoolSystem.API.Domain.Models.Students;
 using SchoolSystem.API.Domain.Queries.Students;
