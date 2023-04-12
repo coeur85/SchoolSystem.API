@@ -1,5 +1,6 @@
 ﻿using SchoolSystem.API.Domain.Commands.Students;
 using SchoolSystem.API.Domain.Communication.Request.DTO;
+using SchoolSystem.API.Domain.Models.Students;
 using SchoolSystem.API.Domain.Queries.Students;
 
 namespace SchoolSystem.API.Mapper
@@ -12,6 +13,9 @@ namespace SchoolSystem.API.Mapper
             CreateMap<UpdateStudentDto, UpdateStudentCommand>();
             CreateMap<DeleteStudentDto, DeleteStudentCommand>();
             CreateMap<GetOneStudentDto, GetOneStudentQuery>();
+
+
+            CreateMap<Student,CreateStudentCommand>();
         }
     }
 }

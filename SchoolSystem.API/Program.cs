@@ -36,7 +36,7 @@ var mapper = AutoMapConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
 //builder.Services.AddFluentValidationAutoValidation(); auto validate
-builder.Services.AddValidatorsFromAssemblyContaining<CreateStudentDtoValidator>();
+
 
 var app = builder.Build();
 
